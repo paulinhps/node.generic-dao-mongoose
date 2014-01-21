@@ -1,0 +1,29 @@
+{
+  "name": "node.generic-dao-mongoose",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "author": "SAS 9 Février <contact@9fevrier.com>",
+  "description": "A generic data access layer for Node+MongoDB projects using Mongoose.",
+  "main": "lib/generic-dao-mongoose.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/9fevrier/node.generic-dao-mongoose.git"
+  },
+  "keywords": [
+    "dao", "generic", "data", "database", "layer", "mongo", "mongodb", "mongoose"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  },
+  "dependencies": {
+      "js.augment": "0.0.1",
+      "node.generic-dao": "0.0.1",
+      "mongoose": "3.8.4",
+      "async": "*"
+  },
+  "devDependencies": {
+      "mocha": ">= 1.12.0"
+  }
+}
+
