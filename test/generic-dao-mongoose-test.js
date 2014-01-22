@@ -5,8 +5,10 @@ var DbPopulator = require('./utils/populator'),
     assert = require('assert'),
     GenericDaoMongoose = require('../lib/generic-dao-mongoose');
 
-var dbUri = 'mongodb://localhost/dao';
+var dbUri = 'mongodb://localhost:27017/dao';
 var db = mongoose.createConnection(dbUri);
+var data = require('./data/testing-data');
+//data = JSON.parse(data);
 
 /**
  * Customer schema used for testing.
@@ -45,7 +47,7 @@ describe('Customers test', function () {
      */
     beforeEach(function (done) {
         this.timeout(3000);
-        var populator = new DbPopulator('../testing-data', dbUri);
+        var populator = new DbPopulator(dbUri, data);
         populator.populate(done);
     });
 

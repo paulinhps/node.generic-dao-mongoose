@@ -1,5 +1,6 @@
 'use strict;';
 
+var augment = require('js.augment');
 var async = require('async');
 var MongoClient = require('mongodb').MongoClient;
 var log4js = require('log4js');
@@ -15,21 +16,22 @@ logger.setLevel('INFO');
  * @param {string} filename - The file which contains data to insert.
  * @constructor
  */
-var DbPopulator = function (filename, dbUri) {
-    this.data = require(filename);
-    this.dbUri = dbUri;
+var DbPopulator = function(uri, data) {
+    this.uri = uri;
+    this.data = data;
+    return this;
 };
-
-DbPopulator.prototype = {
+DbPopulator.protoype = {
     /**
      * memberof DbPopulator
      */
-    constructor: DbPopulator,
+	constructor: DbPopulator,
 
     connectDatabase: function (callback) {
         logger.debug('connectDatabase:start');
         var self = this;
-        MongoClient.connect(this.dbUri, function (err, db) {
+        console.log('dbUri = ' + self.uri);
+        MongoClient.connect('mongodb://localhost:27017/dao', function (err, db) {
             if (err) throw err;
             logger.debug('connectDatabase:finished');
             self.conn = db;
@@ -62,14 +64,15 @@ DbPopulator.prototype = {
         var self = this;
         logger.debug('getCollectionsNames:start');
         var retval = [];
-        var len = Object.keys(data).length;
+        logger.debug('idata ' + typeof(this.data));
+        var len = Object.keys(this.data).length;
         logger.debug('getCollectionsNames:len:' + len);
         var i = 0;
-        Object.keys(data).forEach(function (item) {
+        Object.keys(this.data).forEach(function (item) {
             logger.debug(item);
             self.conn.createCollection(item, function (err, collection) {
                 if (err) throw err;
-                collection.insert(data[item], {
+                collection.insert(self.data[item], {
                     safe: true
                 }, function (e, d) {
                     i++;
