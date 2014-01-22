@@ -1,6 +1,7 @@
 'use strict;';
 
-var mongoose = require('mongoose'),
+var DbPopulator = require('./utils/populator'),
+    mongoose = require('mongoose'),
     assert = require('assert'),
     GenericDaoMongoose = require('../lib/generic-dao-mongoose');
 
@@ -34,11 +35,25 @@ var CustomerDao = GenericDaoMongoose.augment({
 var customerDao = new CustomerDao();
 customerDao.setModelClass(CustomerModel);
 
-describe('Customers', function () {
+/**
+ * Unit tests to validate GenericDaoMongoose.
+ */
+describe('Customers test', function () {
 
+    /**
+     * Before each test, drop the collection then populate.
+     */
+    beforeEach(function (done) {
+        this.timeout(3000);
+        var populator = new DbPopulator('../testing-data', dbUri);
+        populator.populate(done);
+    });
 
+    /**
+     * Create new object(s).
+     */
     describe('create', function () {
-        it('create a new customer', function (done) {
+        it('create a new object', function (done) {
             customerDao.createOne({name: 'customer test new 1'}, function (err, data) {
                     assert.equal(data.name, 'customer test new 1');
                     done(err);
@@ -46,8 +61,8 @@ describe('Customers', function () {
             );
         });
 
-        it('create multiple customer', function (done) {
-            this.timeout(15000);
+        it('create multiple objects', function (done) {
+            this.timeout(5000);
             customerDao.create([
                 {name: 'customer 1'},
                 {name: 'customer 2'},
@@ -58,6 +73,19 @@ describe('Customers', function () {
                 }
             );
         });
+    });
+
+    /**
+     *
+     */
+    describe('get', function () {
+        it('get one record by identifier', function(done) {
+            customerDao.getById('300000000000000000000001', function(err, result) {
+                assert.equal(result.name, 'Customer 1');
+                done(err);
+            });
+        });
+
     });
 
 });
