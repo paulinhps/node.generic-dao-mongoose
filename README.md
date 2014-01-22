@@ -9,6 +9,10 @@ A generic data access layer for Node+MongoDB projects using Mongoose.
 npm install node.generic-dao-mongoose
 ```
 
+## Changelog
+
+See [Changelog](https://github.com/9fevrier/node.generic-dao/blob/master/CHANGELOG.md "Changelog of GenericDaoMongoose by SAS 9 Février")
+
 ## License
 
 The MIT License (MIT)
