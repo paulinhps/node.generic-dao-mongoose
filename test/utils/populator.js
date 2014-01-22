@@ -88,7 +88,7 @@ DbPopulator.prototype = {
 
     populate: function (callback) {
         var self = this;
-        console.log(this.data);
+        console.log("data = " + this.data);
         logger.debug('populate:start');
         async.waterfall([
             self.connectDatabase,
