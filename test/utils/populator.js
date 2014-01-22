@@ -21,7 +21,7 @@ var DbPopulator = function(uri, data) {
     this.data = data;
     return this;
 };
-DbPopulator.protoype = {
+DbPopulator.prototype = {
     /**
      * memberof DbPopulator
      */
