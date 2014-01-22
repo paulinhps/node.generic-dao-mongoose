@@ -27,16 +27,17 @@ DbPopulator.prototype = {
      */
     constructor: DbPopulator,
 
-    connectDatabase: function (callback) {
-        logger.debug('connectDatabase:start');
-        var self = this;
-        console.log('dbUri = ' + self.uri);
-        MongoClient.connect('mongodb://localhost:27017/dao', function (err, db) {
-            if (err) throw err;
-            logger.debug('connectDatabase:finished');
-            self.conn = db;
-            callback(err);
-        });
+    connectDatabase: function (uri) {
+        return function (callback) {
+            logger.debug('connectDatabase:start');
+            var self = this;
+            MongoClient.connect(uri, function (err, db) {
+                if (err) throw err;
+                logger.debug('connectDatabase:finished');
+                self.conn = db;
+                callback(err);
+            });
+        }
     },
 
     dropDatabase: function (callback) {
@@ -92,7 +93,7 @@ DbPopulator.prototype = {
         var self = this;
         logger.debug('populate:start');
         async.waterfall([
-            self.connectDatabase,
+            self.connectDatabase(self.uri),
             self.dropDatabase,
             self.getCollectionNames(self.data),
             self.closeDatabase
