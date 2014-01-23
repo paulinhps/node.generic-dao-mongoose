@@ -130,7 +130,7 @@ describe('Customers test', function () {
      */
     describe('update', function () {
         it('update one object by identifier', function (done) {
-            customerDao.updateById('300000000000000000000001', {name: 'heurk!'}, function (err, result) {
+            customerDao.updateById('123456789012', {name: 'heurk!'}, function (err, result) {
                 assert.equal(err, null);
                 assert.equal(result.name, 'heurk!');
                 done(err);
