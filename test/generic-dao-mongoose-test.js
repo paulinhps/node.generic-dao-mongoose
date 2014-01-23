@@ -146,7 +146,7 @@ describe('Customers test', function () {
         it('delete an object by identifier', function (done) {
             customerDao.removeById('300000000000000000000001', function (err, result) {
                 assert.equal(err, null);
-                assert.equal(result, null);
+                assert.equal(result, 0);
                 done(err);
             });
         });
