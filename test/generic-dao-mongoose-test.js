@@ -144,14 +144,14 @@ describe('Customers test', function () {
      */
     describe('delete', function () {
         it('delete an object by identifier', function (done) {
-            customerDao.removeById('300000000000000000000001', function (err, result) {
+            customerDao.removeById('123456789012', function (err, result) {
                 assert.equal(err, null);
                 assert.equal(result, null);
                 done(err);
             });
         });
         it('delete multiple objects by identifier', function (done) {
-            customerDao.remove(['300000000000000000000001', '300000000000000000000002'], function (err, result) {
+            customerDao.remove(['123456789012', '123456789013'], function (err, result) {
                 assert.equal(err, null);
                 assert.equal(result, null);
                 done(err);
