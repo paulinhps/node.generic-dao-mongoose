@@ -151,7 +151,7 @@ describe('Customers test', function () {
             });
         });
         it('delete multiple objects by identifier', function (done) {
-            customerDao.removeById(['300000000000000000000001', '300000000000000000000002'], function (err, result) {
+            customerDao.remove(['300000000000000000000001', '300000000000000000000002'], function (err, result) {
                 assert.equal(err, null);
                 assert.equal(result, null);
                 done(err);
