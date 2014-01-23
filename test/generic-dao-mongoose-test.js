@@ -23,7 +23,7 @@
 
 'use strict;';
 
-var DbPopulator = require('./utils/populator'),
+var Populator = require('node.populator-mongodb'),
     mongoose = require('mongoose'),
     assert = require('assert'),
     GenericDaoMongoose = require('../lib/generic-dao-mongoose');
@@ -73,7 +73,7 @@ describe('Customers test', function () {
      */
     beforeEach(function (done) {
         this.timeout(3000);
-        var populator = new DbPopulator(dbUri, data);
+        var populator = new Populator(dbUri, data);
         populator.populate(done);
     });
 
