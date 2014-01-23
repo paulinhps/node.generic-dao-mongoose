@@ -146,14 +146,15 @@ describe('Customers test', function () {
         it('delete an object by identifier', function (done) {
             customerDao.removeById('300000000000000000000001', function (err, result) {
                 assert.equal(err, null);
-                assert.equal(result, 0);
+                assert.equal(result, true);
                 done(err);
             });
         });
         it('delete multiple objects by identifier', function (done) {
             customerDao.remove(['300000000000000000000001', '300000000000000000000002'], function (err, result) {
                 assert.equal(err, null);
-                assert.equal(result, null);
+                assert.equal(result[0], true);
+                assert.equal(result[1], true);
                 done(err);
             });
         });
