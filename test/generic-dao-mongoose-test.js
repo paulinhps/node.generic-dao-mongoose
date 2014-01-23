@@ -61,6 +61,7 @@ var CustomerDao = GenericDaoMongoose.augment({
 });
 var customerDao = new CustomerDao();
 customerDao.setModelClass(CustomerModel);
+customerDao.setPrimaryKeyName('_id');
 
 /**
  * Unit tests to validate GenericDaoMongoose.
