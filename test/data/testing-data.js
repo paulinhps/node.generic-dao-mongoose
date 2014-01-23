@@ -9,6 +9,6 @@ var getDBRef = function(collectionName, id) {
 
 module.exports = {
     customer: [
-        {_id: new ObjectID("123456789012"), name: "Customer 1" },
-        {_id: new ObjectID("123456789013"), name: "Customer 2" }
+        {_id: new ObjectID("300000000000000000000001"), name: "Customer 1" },
+        {_id: new ObjectID("300000000000000000000002"), name: "Customer 2" }
     ]};
