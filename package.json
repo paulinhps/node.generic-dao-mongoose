@@ -1,7 +1,7 @@
 {
   "name": "node.generic-dao-mongoose",
   "preferGlobal": false,
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "SAS 9 Février <contact@9fevrier.com>",
   "description": "A generic data access layer for Node+MongoDB projects using Mongoose.",
   "main": "lib/generic-dao-mongoose.js",
